@@ -33,5 +33,5 @@ jobs:
         run:  |
           echo trying to output github env vars
           echo process.env.GITHUB_WORKSPACE
-          echo $GITHUB_WORKSPACE
-          echo ${GITHUB_WORKSPACE}
+          echo $GITHUB_WORKSPACE/test.txt
+          echo ${GITHUB_WORKSPACE}/test.txt
