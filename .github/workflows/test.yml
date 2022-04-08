@@ -31,12 +31,12 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run:  |
-          echo trying to output github env vars
+          echo output github env vars
           echo $GITHUB_WORKSPACE
-      - name: Read a file
-        id: package
-        uses: juliangruber/read-file-action@v1
+      - name: Read file
+        uses: bfren/read-file@v1
+        id: read_file
         with:
-          path: $GITHUB_WORKSPACE/test.txt
-      - name: Echo file contents
-        run: echo "${{ steps.package.outputs.content }}"
+          file: ./test.txt
+      - name: Echo file
+        run: echo "${{ steps.read_file.outputs.contents }}"
