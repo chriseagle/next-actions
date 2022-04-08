@@ -35,6 +35,7 @@ jobs:
           echo process.env.GITHUB_WORKSPACE
           echo $GITHUB_WORKSPACE/test.txt
           echo ${GITHUB_WORKSPACE}/test.txt
+          echo ${GITHUB_CONTEXT}
       - name: Read a file
         id: package
         uses: juliangruber/read-file-action@v1
