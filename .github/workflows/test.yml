@@ -21,13 +21,15 @@ jobs:
   readsfile:
     runs-on: ubuntu-latest
     steps:
-      - name: Read package.json
-        id: package
+      - uses: actions/checkout@v3
+      
+      - name: Read text.txt
+        id: filename
         uses: juliangruber/read-file-action@v1
         with:
-          path: ./test.txt
+          path: $GITHUB_WORKSPACE/test.txt
       - name: Echo text.txt
-        run: echo "${{ steps.package.outputs.content }}"
+        run: echo "${{ steps.filename.outputs.content }}"
       
 
   # This workflow contains a single job called "build"
