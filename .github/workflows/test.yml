@@ -33,12 +33,10 @@ jobs:
         run:  |
           echo trying to output github env vars
           echo $GITHUB_WORKSPACE
-          echo $HOME
-          echo $GITHUB_ENV
       - name: Read a file
         id: package
         uses: juliangruber/read-file-action@v1
         with:
-          path: ${GITHUB_WORKSPACE}/test.txt
+          path: $GITHUB_WORKSPACE/test.txt
       - name: Echo file contents
         run: echo "${{ steps.package.outputs.content }}"
