@@ -35,3 +35,10 @@ jobs:
           echo process.env.GITHUB_WORKSPACE
           echo $GITHUB_WORKSPACE/test.txt
           echo ${GITHUB_WORKSPACE}/test.txt
+      - name: Read a file
+        id: package
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ${GITHUB_WORKSPACE}/test.txt
+      - name: Echo file contents
+        run: echo "${{ steps.package.outputs.content }}"
