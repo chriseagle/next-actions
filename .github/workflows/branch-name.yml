@@ -25,4 +25,10 @@ jobs:
       # Runs a single command using the runners shell
       - name: Write branch name to .env.production and commit changes
         run:  touch .env.production && echo NEXT_PUBLIC_LAST_MERGED_BRANCH=${{ github.head_ref }} >> .env.production
+      - name: Write to another file test
+        run: |
+          branch_ref=${{ github.head_ref }}
+          template='{"last_merged_branch_name":"%s"}'
+          json=$(printf "$template" "$branch_ref")
+          echo json | tee 'workflow-outputs.json' > /dev/null
       - uses: stefanzweifel/git-auto-commit-action@v4
