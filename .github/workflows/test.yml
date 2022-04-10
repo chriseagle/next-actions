@@ -29,14 +29,8 @@ jobs:
       - uses: actions/checkout@v3
 
       # Runs a single command using the runners shell
-      - name: Run a one-line script
+      - name: Write to file.txt and commit changes
         run:  |
-          echo output github env vars
-          echo $GITHUB_WORKSPACE
-      - name: Read file
-        uses: bfren/read-file@v1
-        id: read_file
-        with:
-          file: ./test.txt
-      - name: Echo file
-        run: echo "${{ steps.read_file.outputs.contents }}"
+          touch file.txt
+          echo HelloWorld >> file.txt
+      - uses: stefanzweifel/git-auto-commit-action@v4
