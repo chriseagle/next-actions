@@ -24,6 +24,5 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Write branch name to .env.production and commit changes
-        run:  |
-          touch .env.production
+        run:  touch bob.txt && echo helloworld >> bob.txt
       - uses: stefanzweifel/git-auto-commit-action@v4
