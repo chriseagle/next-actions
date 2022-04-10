@@ -26,5 +26,4 @@ jobs:
       - name: Write branch name to .env.production and commit changes
         run:  |
           touch .env.production
-          echo NEXT_PUBLIC_LAST_MERGED_BRANCH=${{ github.head_ref }} >> .env.production
       - uses: stefanzweifel/git-auto-commit-action@v4
