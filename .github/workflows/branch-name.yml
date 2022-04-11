@@ -28,7 +28,10 @@ jobs:
       - name: Write branch name to a json settings file and commit changew
         run: |
           branch_ref=${{ github.head_ref }}
-          template='{"last_merged_branch_name":"%s"}'
-          json=$(printf "$template" "$branch_ref")
-          echo $json | tee './settings/workflow-outputs.json' > /dev/null
+          target=feat
+          if [[ "$branch_ref" == *"$target"* ]]; then
+            template='{"last_merged_branch_name":"%s"}'
+            json=$(printf "$template" "$branch_ref")
+            echo $json | tee './settings/workflow-outputs.json' > /dev/null
+          fi
       - uses: stefanzweifel/git-auto-commit-action@v4
