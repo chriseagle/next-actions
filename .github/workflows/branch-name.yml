@@ -23,9 +23,9 @@ jobs:
       - uses: actions/checkout@v3
 
       # Runs a single command using the runners shell
-      - name: Write branch name to .env.production and commit changes
+      - name: Append branch name to .env.production and commit changes
         run:  touch .env.production && echo NEXT_PUBLIC_LAST_MERGED_BRANCH=${{ github.head_ref }} >> .env.production
-      - name: Write to another file test
+      - name: Write branch name to a json settings file and commit changew
         run: |
           branch_ref=${{ github.head_ref }}
           template='{"last_merged_branch_name":"%s"}'
