@@ -32,6 +32,6 @@ jobs:
           if [[ "$branch_ref" == *"$target"* ]]; then
             template='{"last_merged_branch_name":"%s"}'
             json=$(printf "$template" "$branch_ref")
-            echo $json | tee './settings/workflow-outputs.json' > /dev/null
+            echo $json | tee './settings/workflow.json' > /dev/null
           fi
       - uses: stefanzweifel/git-auto-commit-action@v4
