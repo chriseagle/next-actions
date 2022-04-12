@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Writing to File
+name: Writing Branch Name to JSON
 
 # Controls when the workflow will run
 on:
@@ -11,24 +11,17 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  branch-name-to-json:
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-
-      # Runs a single command using the runners shell
-      - name: Append branch name to .env.production and commit changes
-        run:  touch .env.production && echo NEXT_PUBLIC_LAST_MERGED_BRANCH=${{ github.head_ref }} >> .env.production
-      - name: Write branch name to a json settings file and commit changew
+      - name: Write branch name to a json settings file and commit change
         run: |
           branch_ref=${{ github.head_ref }}
           target=feat
+          if [[ ! -d "./settings" ]]; then
+            mkdir settings
+          fi
           if [[ "$branch_ref" == *"$target"* ]]; then
             template='{"last_merged_branch_name":"%s"}'
             json=$(printf "$template" "$branch_ref")
